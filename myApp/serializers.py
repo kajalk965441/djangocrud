@@ -1,7 +1,7 @@
-# from rest_framework import serializers
-# from . models import Product
-
-# class ProductSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = Product
-#         fields = '__all__'
+from django import forms
+from .models import Product
+#DataFlair
+class ProductCreate(forms.ModelForm):
+    class Meta:
+        model = Product
+        fields = '__all__'

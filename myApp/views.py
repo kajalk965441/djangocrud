@@ -2,10 +2,11 @@ from django.shortcuts import render
 
 from django.shortcuts import render, redirect
 from .models import Product
-from .forms import ProductCreate
-from django.http import HttpResponse
 
-#DataFlair
+from django.http import HttpResponse
+from . serializers import ProductCreate
+
+
 def index(request):
     shelf = Product.objects.all()
     return render(request, 'library.html', {'shelf': shelf})
@@ -20,7 +21,7 @@ def upload(request):
         else:
             return HttpResponse("""your form is wrong, reload on <a href = "{{ url : 'index'}}">reload</a>""")
     else:
-        return render(request, 'upload_form.html', {'upload_form':upload})
+        return render(request, 'Upload_form.html', {'upload_form':upload})
 
 def update_Product(request, Product_id):
     Product_id = int(Product_id)
@@ -32,7 +33,7 @@ def update_Product(request, Product_id):
     if Product_form.is_valid():
        Product_form.save()
        return redirect('index')
-    return render(request, 'upload_form.html', {'upload_form':Product_form})
+    return render(request, 'Upload_form.html', {'upload_form':Product_form})
 
 def delete_Product(request, Product_id):
     Product_id = int(Product_id)
