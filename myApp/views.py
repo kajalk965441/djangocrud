@@ -1,12 +1,8 @@
 from django.shortcuts import render
-
 from django.shortcuts import render, redirect
 from .models import Product
-
 from django.http import HttpResponse
-from . serializers import ProductCreate
-
-
+from . forms import ProductCreate
 def index(request):
     shelf = Product.objects.all()
     return render(request, 'library.html', {'shelf': shelf})
